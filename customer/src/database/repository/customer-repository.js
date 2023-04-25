@@ -147,9 +147,7 @@ class CustomerRepository {
 
   async AddCartItem(customerId, { _id, name, price, banner }, qty, isRemove) {
     try {
-      const profile = await CustomerModel.findById(customerId).populate(
-        "cart.product"
-      );
+      const profile = await CustomerModel.findById(customerId);
 
       if (profile) {
         const cartItem = {
@@ -162,7 +160,7 @@ class CustomerRepository {
         if (cartItems.length > 0) {
           let isExist = false;
           cartItems.map((item) => {
-            if (item.product._id.toString() === product._id.toString()) {
+            if (item.product._id.toString() === _id.toString()) {
               if (isRemove) {
                 cartItems.splice(cartItems.indexOf(item), 1);
               } else {
