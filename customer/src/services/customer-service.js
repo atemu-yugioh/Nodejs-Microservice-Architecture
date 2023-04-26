@@ -144,11 +144,6 @@ class CustomerService {
   }
 
   async ManageOrder(customerId, order) {
-    console.log(
-      "🚀 ~ file: customer-service.js:154 ~ CustomerService ~ ManageOrder ~ customerId, order:",
-      customerId,
-      order
-    );
     try {
       const orderResult = await this.repository.AddOrderToProfile(
         customerId,
@@ -161,6 +156,8 @@ class CustomerService {
   }
 
   async SubscribeEvents(payload) {
+    payload = JSON.parse(payload);
+
     const { event, data } = payload;
 
     const { userId, product, order, qty } = data;
