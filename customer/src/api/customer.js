@@ -1,9 +1,10 @@
 const CustomerService = require("../services/customer-service");
+const { SubscribeMessage } = require("../utils");
 const UserAuth = require("./middlewares/auth");
 
-module.exports = (app) => {
+module.exports = (app, channel) => {
   const service = new CustomerService();
-
+  SubscribeMessage(channel, service);
   app.post("/signup", async (req, res, next) => {
     try {
       const { email, password, phone } = req.body;
@@ -55,7 +56,7 @@ module.exports = (app) => {
     }
   });
 
-  app.get("/shoping-details", UserAuth, async (req, res, next) => {
+  app.get("/shopping-details", UserAuth, async (req, res, next) => {
     try {
       const { _id } = req.user;
       const { data } = await service.GetShopingDetails(_id);
