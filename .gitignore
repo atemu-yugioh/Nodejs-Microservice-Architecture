@@ -1,1 +1,4 @@
 db
+customer/.env
+products/.env
+shopping/.env
