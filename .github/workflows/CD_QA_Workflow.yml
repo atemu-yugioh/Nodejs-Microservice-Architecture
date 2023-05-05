@@ -59,7 +59,7 @@ jobs:
           application_name: microservice-app
           environment_name: Microservice-app-env
           version_label: "ver-${{ github.sha }}"
-          region: eu-central-1
+          region: ap-southeast-2
           deployment_package: deploy.zip
           use_existing_version_if_available: true
 
